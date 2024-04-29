@@ -42,7 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDto update(String id, CustomerDto customerRequest) {
         var customer = findCustomerById(id);
 
+        customer.setName(customerRequest.name());
+        customer.setCpf(customerRequest.cpf());
         customer.setPhoneNumber(customerRequest.phoneNumber());
+        customer.setLastServiceDate(customerRequest.lastServiceDate());
         customer.getAddress().setStreet(customerRequest.address().street());
         customer.getAddress().setNumber(customerRequest.address().number());
         customer.getAddress().setDistrict(customerRequest.address().district());
