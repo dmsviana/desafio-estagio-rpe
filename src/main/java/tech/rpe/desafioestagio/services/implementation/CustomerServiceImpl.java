@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto create(CustomerDto customerRequest) {
         if(customerRepository.findByCpf(customerRequest.cpf()) != null) {
-            log.error("[CustomerServiceImpl]: Cliente com o CPF informado já existe: {}", customerRequest.cpf());
+            log.error("[CustomerServiceImpl]: Cliente com o CPF informado já existe:{}", customerRequest.cpf());
             throw new CustomerAlreadyExistsException("Cliente com o CPF informado já existe: " + customerRequest.cpf());
         }
         var customer = CustomerMapper.toEntity(customerRequest);
