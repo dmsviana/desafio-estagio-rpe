@@ -14,14 +14,13 @@ public class Customer extends Person {
 
 
     @Column(name = "last_service_date")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate lastServiceDate;
 
     public Customer() {
 
     }
 
-    public Customer(String id, String name, String cpf, String phoneNumber, Address address) {
+    public Customer(String id, String name, String cpf, String phoneNumber, LocalDate lastServiceDate, Address address) {
         super(id, name, cpf, phoneNumber, address);
     }
 

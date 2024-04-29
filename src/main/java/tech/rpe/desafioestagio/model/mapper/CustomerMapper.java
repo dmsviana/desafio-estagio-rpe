@@ -14,6 +14,7 @@ public class CustomerMapper {
                 entity.getName(),
                 entity.getCpf(),
                 entity.getPhoneNumber(),
+                entity.getLastServiceDate(),
                 AddressMapper.toDTO(entity.getAddress())
         );
     }
@@ -24,6 +25,7 @@ public class CustomerMapper {
                 dto.name(),
                 dto.cpf(),
                 dto.phoneNumber(),
+                dto.lastServiceDate(),
                 AddressMapper.toEntity(dto.address())
         );
     }
