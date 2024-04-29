@@ -21,7 +21,7 @@ public class CustomerTest {
 
     @Test
     public void createCustomer_WithValidName_ShouldReturnCustomer() {
-        Customer customer = new Customer(UUID.randomUUID().toString(), "Diogo", "12345678901", "12345678901", LocalDate.now(), new Address());
+        Customer customer = new Customer(UUID.randomUUID().toString(), "Diogo", "103.800.364-44", "12345678901", LocalDate.now(), new Address());
         assertEquals("Diogo", customer.getName());
     }
 
