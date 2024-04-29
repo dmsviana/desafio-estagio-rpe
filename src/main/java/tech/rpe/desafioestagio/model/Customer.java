@@ -14,7 +14,6 @@ public class Customer extends Person {
 
 
     @Column(name = "last_service_date")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate lastServiceDate;
 
     public Customer() {

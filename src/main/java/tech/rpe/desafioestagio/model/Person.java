@@ -50,6 +50,20 @@ public abstract class Person {
         this.cpf = cpf;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.validate();
+    }
+
+    private void validate() {
+        if (this.name.length() < 3) {
+            throw new IllegalArgumentException("O campo nome deve ter pelo menos 3 caracteres.");
+        }
+        if (!isValidCpf(this.cpf)) {
+            throw new IllegalArgumentException("O campo cpf deve estar no formato 000.000.000-00.");
+        }
+    }
+
+    private boolean isValidCpf(final String cpf) {
+        return cpf.matches("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
     }
 
     @PrePersist
