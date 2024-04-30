@@ -13,10 +13,15 @@
     * Endpoint para remover um Funcionário
     * Endpoint para remover um Cliente
 
+> [!IMPORTANT]
+Para o funcionamento correto do cadastro das entidades, DEVE ser fornecido um CPF VÁLIDO. Caso não queira usar seu próprio CPF:
+[Acesse o gerador de CPF](https://www.4devs.com.br/gerador_de_cpf) 
+
+
 ### Um cliente deve possuir os seguintes dados:
 
     Nome
-    CPF (DEVE SER INFORMADO UM CPF VÁLIDO)
+    CPF 
     Número de telefone
     Data do último serviço
     Endereço {
@@ -32,7 +37,7 @@
 ### Um funcionário deve possuir os seguintes dados:
 
     Nome
-    CPF (DEVE SER INFORMADO UM CPF VÁLIDO)
+    CPF 
     Número de telefone
     Endereço {
         rua,
