@@ -60,6 +60,15 @@ public abstract class Person {
         if (!isValidCpf(this.cpf)) {
             throw new IllegalArgumentException("O campo cpf deve estar no formato 000.000.000-00.");
         }
+
+        if(!isValidPhoneNumber(this.phoneNumber)) {
+            throw new IllegalArgumentException("O número de telefone deve ter pelo menos 10 dígitos.");
+        }
+
+    }
+
+    private boolean isValidPhoneNumber(final String phoneNumber) {
+        return phoneNumber.matches("^\\d{10,11}$");
     }
 
     private boolean isValidCpf(final String cpf) {

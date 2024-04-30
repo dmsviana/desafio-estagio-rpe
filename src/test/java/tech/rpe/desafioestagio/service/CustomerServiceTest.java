@@ -14,6 +14,7 @@ import tech.rpe.desafioestagio.repositories.CustomerRepository;
 import tech.rpe.desafioestagio.services.implementation.CustomerServiceImpl;
 import tech.rpe.desafioestagio.utils.CustomerUtil;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,6 +121,59 @@ public class CustomerServiceTest {
         assertThrows(CustomerNotFoundException.class, () -> customerService.update(customer.getId(), CustomerMapper.toDTO(customer)));
         verify(customerRepository).findById(customer.getId());
         verify(customerRepository, times(0)).save(any(Customer.class));
+    }
+
+    @Test
+    void deleteCustomer_WithValidId_ShouldNotThrowAnyException() {
+        Customer customer = CustomerUtil.createCustomerDefault();
+
+        when(customerRepository.findById(any())).thenReturn(Optional.of(customer));
+        doNothing().when(customerRepository).delete(any(Customer.class));
+
+        assertDoesNotThrow(() -> customerService.delete(customer.getId()));
+        verify(customerRepository).findById(customer.getId());
+        verify(customerRepository).delete(any(Customer.class));
+    }
+
+    @Test
+    void deleteCustomer_WithInvalidId_ShouldThrowCustomerNotFoundException() {
+        when(customerRepository.findById(any())).thenReturn(Optional.empty());
+
+        assertThrows(CustomerNotFoundException.class, () -> customerService.delete("123"));
+        verify(customerRepository).findById("123");
+        verify(customerRepository, times(0)).delete(any(Customer.class));
+    }
+
+    @Test
+    void findAllCustomers_ShouldReturnListOfCustomers() {
+        List<Customer> customers = List.of(CustomerUtil.createCustomerDefault());
+
+        when(customerRepository.findAll()).thenReturn(customers);
+
+        List<CustomerDto> response = customerService.findAll();
+
+        assertEquals(1, response.size());
+        verify(customerRepository).findAll();
+    }
+
+    @Test
+    void findByCpf_WithValidCpf_ShouldReturnCustomer() {
+        Customer customer = CustomerUtil.createCustomerDefault();
+
+        when(customerRepository.findByCpf(any())).thenReturn(customer);
+
+        CustomerDto response = customerService.findByCpf(customer.getCpf());
+
+        assertEquals(customer.getCpf(), response.cpf());
+        verify(customerRepository).findByCpf(customer.getCpf());
+    }
+
+    @Test
+    void findByCpf_WithInvalidCpf_ShouldThrowCustomerNotFoundException() {
+        when(customerRepository.findByCpf(any())).thenReturn(null);
+
+        assertThrows(CustomerNotFoundException.class, () -> customerService.findByCpf("123"));
+        verify(customerRepository).findByCpf("123");
     }
 
 }

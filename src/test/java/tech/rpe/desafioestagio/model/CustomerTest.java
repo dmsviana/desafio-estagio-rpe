@@ -6,6 +6,8 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.platform.commons.annotation.Testable;
+import tech.rpe.desafioestagio.model.enums.Role;
+import tech.rpe.desafioestagio.model.enums.Status;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -44,6 +46,13 @@ public class CustomerTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new Customer(UUID.randomUUID().toString(), "Diogo Marcelo", "12345678901", "12345678901", LocalDate.now(), new Address());
         }, "O campo cpf deve estar no formato 000.000.000-00.");
+    }
+
+    @Test
+    public void createCustomer_WithInvalidPhoneNumber_ShouldThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Employee(UUID.randomUUID().toString(), "Diogo Marcelo", "103.800.364-44", "123", new Address(), Role.DESENVOLVEDOR, Status.ATIVO, LocalDate.now());
+        }, "O número de telefone deve ter pelo menos 10 dígitos.");
     }
 
 }
