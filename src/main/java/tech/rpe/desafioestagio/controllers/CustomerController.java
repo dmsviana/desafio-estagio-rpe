@@ -49,6 +49,11 @@ public class CustomerController {
         return customer;
     }
 
+    @Operation(description = "This method returns all customers")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Customers found successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @GetMapping()
     @ResponseStatus(OK)
     public List<CustomerDto> findAll() {
