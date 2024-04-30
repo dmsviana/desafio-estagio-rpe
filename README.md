@@ -15,7 +15,7 @@
 
 > [!IMPORTANT]
 Para o funcionamento correto do cadastro das entidades, DEVE ser fornecido um CPF VÁLIDO. Caso não queira usar seu próprio CPF:
-[Acesse o gerador de CPF](https://www.4devs.com.br/gerador_de_cpf) 
+   [Acesse o gerador de CPF](https://www.4devs.com.br/gerador_de_cpf){:target="_blank"} 
 
 
 ### Um cliente deve possuir os seguintes dados:
